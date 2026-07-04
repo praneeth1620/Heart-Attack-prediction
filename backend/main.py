@@ -9,9 +9,9 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-ROOT = Path(__file__).resolve().parent.parent
-MODEL_PATH = ROOT / "model" / "heart_attack_model.joblib"
-METADATA_PATH = ROOT / "model" / "model_metadata.joblib"
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "heart_attack_model.joblib"
+METADATA_PATH = BASE_DIR / "model_metadata.joblib"
 
 app = FastAPI(
     title="Heart Attack Risk Predictor API",
