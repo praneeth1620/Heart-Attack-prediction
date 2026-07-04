@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const DEFAULT_FORM = {
   age: 55,
   sex: 'Male',
@@ -197,7 +199,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('demographics')
 
   useEffect(() => {
-    fetch('/api/options')
+    fetch(`${API_BASE}/api/options`)
       .then((res) => res.json())
       .then(setOptions)
       .catch(() => setError('Could not connect to the prediction server.'))
@@ -213,7 +215,7 @@ export default function App() {
     setError(null)
 
     try {
-      const res = await fetch('/api/predict', {
+      const res = await fetch(`${API_BASE}/api/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
